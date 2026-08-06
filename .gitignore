@@ -1,0 +1,20 @@
+# Backend
+backend/node_modules/
+backend/dist/
+
+# Variables de entorno
+backend/.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Archivos temporales
+*.tmp
