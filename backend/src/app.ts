@@ -6,6 +6,7 @@ import cors from 'cors';
 import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
 import youtubeRoutes from "./routes/youtube.routes";
+import favoritesRoutes from "./routes/favorite.routes";
 
 
 const app = express();
@@ -19,6 +20,8 @@ app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
 
 app.use("/videos", youtubeRoutes);
+
+app.use("/favorites", favoritesRoutes);
 
 const PORT = process.env.PORT || 3000;
 

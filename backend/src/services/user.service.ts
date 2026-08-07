@@ -19,18 +19,3 @@ export const createUser = async (user: CreateUser) => {
 
     return result;
 }
-
-// export const getUsers = async () => {
-
-//     const[users] = await db.execute(`
-//         SELECT
-//             id,
-//             first_name,
-//             last_name,
-//             username,
-//             email
-//         FROM users
-//     `);
-
-//     return users;
-// }
