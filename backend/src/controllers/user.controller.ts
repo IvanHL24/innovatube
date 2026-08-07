@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import * as userService from "../services/user.service";
+import * as UserService from "../services/user.service";
 import { CreateUser } from "../types/user.types";
 
 export const registerUser = async (req: Request, res: Response) => {
     try {
         const user: CreateUser = req.body;
 
-        await userService.createUser(user);
+        await UserService.createUser(user);
 
         res.status(201).json({
             message: "Usuario registrado correctamente"
