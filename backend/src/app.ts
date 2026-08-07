@@ -1,11 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
-// import dotenv from 'dotenv';
 import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
-// import { db } from './config/database';
+import youtubeRoutes from "./routes/youtube.routes";
 
-// dotenv.config();
 
 const app = express();
 
@@ -17,11 +18,7 @@ app.use("/users", userRoutes);
 
 app.use("/auth", authRoutes);
 
-// app.get('/', (req, res) => {
-//     res.json({
-//         message: 'API InnovaTube funcionando'
-//     })
-// });
+app.use("/videos", youtubeRoutes);
 
 const PORT = process.env.PORT || 3000;
 
