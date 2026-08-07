@@ -1,32 +1,24 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import { pool } from './config/database';
+// import dotenv from 'dotenv';
+import userRoutes from "./routes/user.routes";
+// import { db } from './config/database';
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.json({
-        message: 'API InnovaTube funcionando'
-    })
-});
+app.use("/users", userRoutes);
 
-//Probando conexión a MySQL
-// async function testDatabaseConnection() {
-//     try {
-//         const connection = await pool.getConnection();
-//         console.log('Conectado a MySQL');
-//         connection.release();
-//     } catch (error) {
-//         console.error('Error al conectar con MySQL:', error);
-//     }
-// }
-// testDatabaseConnection();
+// app.get('/', (req, res) => {
+//     res.json({
+//         message: 'API InnovaTube funcionando'
+//     })
+// });
 
 const PORT = process.env.PORT || 3000;
 
