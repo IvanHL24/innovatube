@@ -1,6 +1,6 @@
-<div class="login-container">
+<div class="register-container">
 
-  <mat-card class="login-card">
+  <mat-card class="register-card">
 
     <mat-card-header>
       <mat-card-title class="title">Registrarse</mat-card-title>
@@ -73,7 +73,7 @@
 
           @if (registerForm.get('email')?.hasError('email')) {
             <mat-error>
-              El correo electrónico de ser valido
+              El correo electrónico debe ser valido
             </mat-error>
           }
 
@@ -178,7 +178,7 @@
           mat-flat-button
           color="primary"
           type="submit"
-          class="login-button"
+          class="register-button"
           [disabled]="registerForm.invalid || loading"
         >
           @if (loading) {

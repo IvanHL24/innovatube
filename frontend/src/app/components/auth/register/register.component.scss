@@ -6,7 +6,12 @@ mat-card-header .title {
   text-align: center;
 }
 
-.login-container {
+mat-card-header .subtitle {
+  text-align: center;
+}
+
+
+.register-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -14,7 +19,7 @@ mat-card-header .title {
   padding: 24px;
 }
 
-.login-card {
+.register-card {
   width: 100%;
   max-width: 420px;
 }
@@ -41,7 +46,7 @@ mat-form-field {
   margin: 4px 0 20px;
 }
 
-.login-button {
+.register-button {
   width: 100%;
   height: 48px;
 }

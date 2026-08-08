@@ -62,7 +62,7 @@ export class RegisterComponent {
   ) {}
 
   onSubmit(): void {
-    this.loading = false;
+    this.loading = true;
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
