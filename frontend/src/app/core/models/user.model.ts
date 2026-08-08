@@ -16,6 +16,16 @@ export class User {
     }
 }
 
+export class LoginRequest {
+    identifier: string;
+    password: string;
+
+    constructor() {
+        this.identifier = '';
+        this.password = '';
+    }
+}
+
 export class ForgotPassword {
     username: string;
     email: string;

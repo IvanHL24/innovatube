@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ForgotPassword, ResetPassword, User } from '../models/user.model';
+import { ForgotPassword, LoginRequest, ResetPassword, User } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import config from '../../../assets/config/config.json';
@@ -22,8 +22,8 @@ export class SessionService {
     this.httpHeader = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
-  public login(user: User): Observable<any> {
-    return this._http.post<any>(this.url+'auth/login', user, {headers: this.httpHeader})
+  public login(loginRequest: LoginRequest): Observable<any> {
+    return this._http.post<any>(this.url+'auth/login', loginRequest, {headers: this.httpHeader})
   }
 
   public forgotPassword(forgotPassword: ForgotPassword): Observable<any> {
