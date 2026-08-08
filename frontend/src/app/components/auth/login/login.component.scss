@@ -1,3 +1,11 @@
+mat-card-header {
+  justify-content: center;
+}
+
+mat-card-header .title {
+  text-align: center;
+}
+
 .login-container {
   min-height: 100vh;
   display: flex;

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import config from '../../../assets/config/config.json';
-import { User } from '../models/user.model';
+import { RegisterRequest } from '../models/user.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class UserService {
     this.httpHeader = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
-  public register(user: User): Observable<any> {
-    return this._http.post<any>(this.url+'users/register', user, {headers: this.httpHeader})
+  public register(registerRequest: RegisterRequest): Observable<any> {
+    return this._http.post<any>(this.url+'users/register', registerRequest, {headers: this.httpHeader})
   }
 }

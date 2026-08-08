@@ -3,8 +3,8 @@
   <mat-card class="login-card">
 
     <mat-card-header>
-      <mat-card-title>Iniciar sesión</mat-card-title>
-      <mat-card-subtitle>
+      <mat-card-title class="title">Iniciar sesión</mat-card-title>
+      <mat-card-subtitle class="subtitle">
         Ingresa a tu cuenta
       </mat-card-subtitle>
     </mat-card-header>
@@ -16,7 +16,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Correo electrónico o nombre de usuario</mat-label>
 
-          <mat-icon matPrefix>identifier</mat-icon>
+          <mat-icon matPrefix>person</mat-icon>
 
           <input
             matInput
@@ -27,7 +27,7 @@
 
           @if (loginForm.get('identifier')?.hasError('required')) {
             <mat-error>
-              El correo electrónico es requerido
+              Este campo es requerido
             </mat-error>
           }
 
