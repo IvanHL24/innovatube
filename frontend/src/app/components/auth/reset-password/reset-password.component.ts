@@ -119,7 +119,7 @@ export class ResetPasswordComponent {
           confirmButtonText: 'Ir a inicio de sesión'
         }).then((result) => {
           if (result.isConfirmed) {
-            this.router.navigate(['/login'])
+            this.router.navigate(['/auth/login'])
           }          
         })
       },

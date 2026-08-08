@@ -54,16 +54,18 @@ export class LoginComponent {
         localStorage.setItem('token', data.token);
         Swal.fire({
           title: 'Éxito',
-          text: 'Sesión iniciada correctamente',
+          text: data.message,
           icon: 'success',
           confirmButtonText: 'Aceptar'
+        }).then(() => {
+          this.router.navigate(['/']);
         })
       },
       error: (error) => {
         this.loading = false;
         Swal.fire({
           title: 'Error',
-          text: 'Error al iniciar sesión',
+          text: error.error.message,
           icon: 'error',
           confirmButtonText: 'Aceptar'
         })
