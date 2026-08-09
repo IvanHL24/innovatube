@@ -91,7 +91,7 @@
 
           <input
             matInput
-            [type]="hidePassword ? 'password' : 'text'"
+            [type]="hidePassword1 ? 'password' : 'text'"
             formControlName="password"
             autocomplete="current-password"
           />
@@ -100,10 +100,10 @@
             mat-icon-button
             matSuffix
             type="button"
-            (click)="hidePassword = !hidePassword"
+            (click)="hidePassword1 = !hidePassword1"
           >
             <mat-icon>
-              {{ hidePassword ? 'visibility' : 'visibility_off' }}
+              {{ hidePassword1 ? 'visibility' : 'visibility_off' }}
             </mat-icon>
           </button>
 
@@ -123,7 +123,7 @@
 
           <input
             matInput
-            [type]="hidePassword ? 'password' : 'text'"
+            [type]="hidePassword2 ? 'password' : 'text'"
             formControlName="confirmPassword"
             autocomplete="current-password"
           />
@@ -132,10 +132,10 @@
             mat-icon-button
             matSuffix
             type="button"
-            (click)="hidePassword = !hidePassword"
+            (click)="hidePassword2 = !hidePassword2"
           >
             <mat-icon>
-              {{ hidePassword ? 'visibility' : 'visibility_off' }}
+              {{ hidePassword2 ? 'visibility' : 'visibility_off' }}
             </mat-icon>
           </button>
 
@@ -149,13 +149,14 @@
           <div class="password-error">La contraseña no coincide</div>
         }
 
+        <div #recaptchaContainer class="captcha"></div>
 
         <button
           mat-flat-button
           color="primary"
           type="submit"
           class="register-button"
-          [disabled]="registerForm.invalid || loading"
+          [disabled]="registerForm.invalid || loading || !recaptchaToken"
         >
           @if (loading) {
             <mat-spinner diameter="20"></mat-spinner>

@@ -22,6 +22,8 @@ export class RegisterRequest {
     username: string;
     email: string;
     password: string;
+    confirmPassword: string;
+    recaptchaToken: string;
 
     constructor() {
         this.first_name = '';
@@ -29,6 +31,8 @@ export class RegisterRequest {
         this.username = '';
         this.email = '';
         this.password = '';
+        this.confirmPassword = '';
+        this.recaptchaToken = '';
     }
 }
 

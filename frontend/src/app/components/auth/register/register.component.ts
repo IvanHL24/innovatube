@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,18 +11,50 @@ import { RegisterRequest } from '../../../core/models/user.model';
 import { UserService } from '../../../core/services/user.service';
 import Swal from 'sweetalert2';
 
+declare const grecaptcha: any;
+
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule, RouterLink, MatCardModule, MatFormField, MatInputModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
 
   private fb = inject(FormBuilder);
 
-  hidePassword = true;
+  @ViewChild('recaptchaContainer', { static: true })
+  recaptchaContainer!: ElementRef;
+
+  recaptchaSiteKey = '6LcSwXwtAAAAAM0HqiLBAyMtpc5nieTX-C61BHnS';
+  recaptchaToken: string | null = null;
+
+  hidePassword1 = true;
+  hidePassword2 = true;
   loading = false;
+
+  ngAfterViewInit(): void {
+    if (typeof grecaptcha !== 'undefined') {
+      grecaptcha.render(
+        this.recaptchaContainer.nativeElement,
+        {
+          sitekey: this.recaptchaSiteKey,
+
+          callback: (token: string) => {
+            this.onCaptchaResolved(token);
+          },
+
+          'expired-callback': () => {
+            this.onCaptchaExpired();
+          },
+
+          'error-callback': () => {
+            this.onCaptchaError();
+          }
+        }
+      );
+    }
+  }
 
   registerForm = this.fb.nonNullable.group({
     first_name: ['', [
@@ -62,13 +94,26 @@ export class RegisterComponent {
   ) {}
 
   onSubmit(): void {
-    this.loading = true;
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
     }
 
-    const registerRequest: RegisterRequest = this.registerForm.getRawValue();
+    if (!this.recaptchaToken) {
+      Swal.fire({
+        title: 'Captcha requerido',
+        text: 'Completa la verificación de reCAPTCHA.',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+
+    this.loading = true;
+
+    const registerRequest: RegisterRequest = {
+      ...this.registerForm.getRawValue(),
+    recaptchaToken: this.recaptchaToken};
 
     this.userService.register(registerRequest).subscribe({
       next: (data) => {
@@ -94,6 +139,18 @@ export class RegisterComponent {
         })
       }
     })
+  }
+
+  onCaptchaResolved(token: string): void {
+    this.recaptchaToken = token;
+  }
+
+  onCaptchaExpired(): void {
+    this.recaptchaToken = null
+  }
+
+  onCaptchaError(): void {
+    this.recaptchaToken = null;
   }
 
 }
