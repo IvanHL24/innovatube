@@ -29,13 +29,17 @@ Aplicación web para búsqueda y gestión de videos favoritos de Youtube.
 - Persistencia de usuarios y datos en MySQL
 
 ## Estructura del proyecto
+```text
 innovatube/
-    frontend/
-    backend/
-    database/
-        database.sql
-    .gitignore
-    README.md
+|-- frontend/
+|    -- ...
+|-- backend/
+|    -- ...
+|-- database/
+|    -- database.sql
+|-- .gitignore
+|-- README.md
+```
 
 
 ## Requisitos
