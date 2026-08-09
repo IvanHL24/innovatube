@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import config from '../../../assets/config/config.json';
 import { RegisterRequest } from '../models/user.model';
 import { Observable } from 'rxjs';
@@ -11,12 +10,10 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private httpHeader: HttpHeaders;
-
   private url: string;
 
   constructor(
     private _http: HttpClient,
-    private _router: Router
   ) {
     this.url = config.service;
     this.httpHeader = new HttpHeaders().set('Content-Type', 'application/json');

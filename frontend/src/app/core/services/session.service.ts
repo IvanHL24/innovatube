@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 export class SessionService {
 
   private httpHeader: HttpHeaders;
-
   private url: string;
 
   constructor(
@@ -35,6 +34,11 @@ export class SessionService {
   }
 
   public userInfo(): Observable<any> {
-    return this._http.post<any>(this.url+'auth/me', {headers: this.httpHeader.append('Authorization', 'Bearer '+localStorage.getItem('token'))})
+    return this._http.get<any>(this.url+'auth/me', {headers: this.httpHeader.append('Authorization', 'Bearer '+localStorage.getItem('token'))})
+  }
+
+  public logout(): void {
+    localStorage.removeItem('token');
+    this._router.navigate(['/auth/login'])
   }
 }

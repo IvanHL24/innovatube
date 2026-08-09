@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { SessionService } from '../../core/services/session.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -15,6 +16,20 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 })
 export class MainLayoutComponent {
 
+  user: any;
 
-  logout(): void {}
+  constructor(
+    private sessionService: SessionService
+  ) {}
+
+  ngOnInit(): void {
+    const userStorage = sessionStorage.getItem('user');
+    if (userStorage) {
+      this.user = JSON.parse(userStorage);
+    }
+  }
+
+  logout(): void {
+    this.sessionService.logout();
+  }
 }
