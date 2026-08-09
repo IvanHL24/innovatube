@@ -10,21 +10,26 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
             message: "Token no enviado"
         });
     }
-
+    
     const token = authHeader.split(" ")[1];
-
+    
     if (!token) {
         return res.status(401).json({
             message: "Token inválido"
         });
     }
+    
+    try {
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET as string
+        ) as JwtUser;
 
-    const decoded = jwt.verify(
-        token,
-        process.env.JWT_SECRET as string
-    ) as JwtUser;
+        req.user = decoded;
 
-    req.user = decoded;
-
-    next();
+        next();
+    } catch {
+        next()
+    }
+    
 }

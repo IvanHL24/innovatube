@@ -21,7 +21,7 @@ export const getMe = async (req: Request, res: Response) => {
         const user = await AuthService.getMe(req.user!.id);
         res.json(user);
     } catch (error) {
-        res.status(500).json({
+        res.status(401).json({
             message: "Error al obtener información del usuario"
         });
     }
