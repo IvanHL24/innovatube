@@ -15,3 +15,15 @@ export class Favorite {
         this.created_at = '';
     }
 }
+
+export class VideoCardData {
+    youtube_video_id: string;
+    title: string;
+    image: string;
+
+    constructor(){
+        this.youtube_video_id = '';
+        this.title = '';
+        this.image = '';
+    }
+}

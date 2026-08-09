@@ -1,0 +1,43 @@
+<mat-card class="video-card">
+
+  <div class="thumbnail-container">
+    <img
+      mat-card-image
+      [src]="video.image"
+      [alt]="video.title"
+      class="thumbnail">
+
+    <button
+      mat-icon-button
+      class="favorite-button"
+      [class.favorite]="isFavorite"
+      [attr.aria-label]="isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+      (click)="onFavoriteToggle()">
+
+      <mat-icon>
+        {{ isFavorite ? 'star' : 'star_border' }}
+      </mat-icon>
+
+    </button>
+  </div>
+
+
+  <mat-card-content>
+    <h3 class="video-title">
+      {{ video.title }}
+    </h3>
+  </mat-card-content>
+
+
+  <mat-card-actions>
+    <button
+      mat-button
+      color="primary"
+      (click)="openVideo()">
+
+      <mat-icon>play_arrow</mat-icon>
+      Ver video
+    </button>
+  </mat-card-actions>
+
+</mat-card>

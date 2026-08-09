@@ -52,14 +52,7 @@ export class LoginComponent {
       next: (data) => {
         this.loading = false;
         localStorage.setItem('token', data.token);
-        Swal.fire({
-          title: 'Éxito',
-          text: data.message,
-          icon: 'success',
-          confirmButtonText: 'Aceptar'
-        }).then(() => {
-          this.router.navigate(['/']);
-        })
+        this.router.navigate(['/']);
       },
       error: (error) => {
         this.loading = false;

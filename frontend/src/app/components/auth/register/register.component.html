@@ -15,7 +15,6 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Nombre</mat-label>
-
           <mat-icon matPrefix>person</mat-icon>
 
           <input
@@ -26,16 +25,13 @@
           />
 
           @if (registerForm.get('first_name')?.hasError('required')) {
-            <mat-error>
-              El nombre es requerido
-            </mat-error>
+            <mat-error>El nombre es requerido</mat-error>
           }
 
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Apellido</mat-label>
-
           <mat-icon matPrefix>person</mat-icon>
 
           <input
@@ -46,16 +42,13 @@
           />
 
           @if (registerForm.get('last_name')?.hasError('required')) {
-            <mat-error>
-              El apellido es requerido
-            </mat-error>
+            <mat-error>El apellido es requerido</mat-error>
           }
 
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Correo electrónico</mat-label>
-
           <mat-icon matPrefix>email</mat-icon>
 
           <input
@@ -66,22 +59,17 @@
           />
 
           @if (registerForm.get('email')?.hasError('required')) {
-            <mat-error>
-              El correo electrónico es requerido
-            </mat-error>
+            <mat-error>El correo electrónico es requerido</mat-error>
           }
 
           @if (registerForm.get('email')?.hasError('email')) {
-            <mat-error>
-              El correo electrónico debe ser valido
-            </mat-error>
+            <mat-error>El correo electrónico debe ser valido</mat-error>
           }
 
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Nombre de usuario</mat-label>
-
           <mat-icon matPrefix>alternate_email</mat-icon>
 
           <input
@@ -92,16 +80,13 @@
           />
 
           @if (registerForm.get('username')?.hasError('required')) {
-            <mat-error>
-              El nombre de usuario es requerido
-            </mat-error>
+            <mat-error>El nombre de usuario es requerido</mat-error>
           }
 
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
-
           <mat-icon matPrefix>lock</mat-icon>
 
           <input
@@ -123,22 +108,17 @@
           </button>
 
           @if (registerForm.get('password')?.hasError('required')) {
-            <mat-error>
-              La contraseña es requerida
-            </mat-error>
+            <mat-error>La contraseña es requerida</mat-error>
           }
 
           @if (registerForm.get('password')?.hasError('minlength')) {
-            <mat-error>
-              La contraseña debe tener al menos 8 caracteres
-            </mat-error>
+            <mat-error>La contraseña debe tener al menos 8 caracteres</mat-error>
           }
 
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Confirmar contraseña</mat-label>
-
           <mat-icon matPrefix>lock</mat-icon>
 
           <input
@@ -160,17 +140,13 @@
           </button>
 
           @if (registerForm.get('confirmPassword')?.hasError('required')) {
-            <mat-error>
-              Es necesario confirmar la contraseña
-            </mat-error>
+            <mat-error>Es necesario confirmar la contraseña</mat-error>
           }
 
         </mat-form-field>
 
         @if (registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.dirty) {
-            <div class="password-error">
-                La contraseña no coincide
-            </div>
+          <div class="password-error">La contraseña no coincide</div>
         }
 
 

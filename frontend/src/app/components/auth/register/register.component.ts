@@ -75,7 +75,7 @@ export class RegisterComponent {
         this.loading = false;
         Swal.fire({
           title: 'Éxito',
-          text: 'Registro exitoso',
+          text: data.message,
           icon: 'success',
           confirmButtonText: 'Ir a inicio de sesión'
         }).then((result) => {
@@ -88,7 +88,7 @@ export class RegisterComponent {
         this.loading = false;
         Swal.fire({
           title: 'Error',
-          text: 'Error al registrarse',
+          text: error.error.message,
           icon: 'error',
           confirmButtonText: 'Aceptar'
         })

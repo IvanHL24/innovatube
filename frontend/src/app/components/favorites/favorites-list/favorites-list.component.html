@@ -1,1 +1,100 @@
-<p>favorites-list works!</p>
+<div class="favorites-page">
+
+  <header class="page-header">
+    <div>
+      <h1>Mis favoritos</h1>
+      <p>Videos que guardaste</p>
+    </div>
+  </header>
+
+  @if (!loading && !errorMessage && favorites.length > 0) {
+
+    <div class="search-container">
+      <mat-form-field
+        appearance="outline"
+        class="search-field">
+
+        <mat-label>Buscar en tus favoritos</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+
+        <input
+          matInput
+          type="text"
+          placeholder="Escribe para buscar..."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="filterFavorites()">
+
+
+        @if (searchTerm) {
+          <button
+            matSuffix
+            mat-icon-button
+            type="button"
+            aria-label="Limpiar búsqueda"
+            (click)="clearSearch()">
+
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+
+    </div>
+  }
+
+  @if (loading) {
+    <div class="state-container">
+      <mat-spinner diameter="42"></mat-spinner>
+      <p>Cargando favoritos...</p>
+    </div>
+  }
+
+  @if (!loading && errorMessage) {
+    <div class="state-container">
+      <mat-icon class="state-icon">error_outline</mat-icon>
+      <h2>Error al cargar favoritos</h2>
+      <p>{{ errorMessage }}</p>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="loadFavorites()">
+
+        <mat-icon>refresh</mat-icon>
+        Intentar nuevamente
+      </button>
+    </div>
+  }
+
+  @if (!loading && !errorMessage && filteredFavorites.length > 0) {
+    <section class="results-section">
+      <div class="results-header">
+        <h2>Videos guardados</h2>
+        <span>
+          {{ filteredFavorites.length }}
+          {{ filteredFavorites.length === 1 ? 'video' : 'videos' }}
+        </span>
+      </div>
+
+      <div class="video-grid">
+        @for (
+          favorite of filteredFavorites; track favorite.youtube_video_id
+        ) {
+          <app-video-card
+            [video]="favorite"
+            [isFavorite]="true"
+            (toggleFavorite)="deleteFavorite($event.youtube_video_id)">
+          </app-video-card>
+        }
+      </div>
+    </section>
+  }
+
+  @if (!loading && !errorMessage && favorites.length === 0 && filteredFavorites.length === 0) {
+    <div class="state-container">
+      <mat-icon class="state-icon">star_border</mat-icon>
+      <h2>No tienes favoritos guardados</h2>
+      <p>Tus videos favoritos apareceran aquí.</p>
+    </div>
+  }
+
+</div>

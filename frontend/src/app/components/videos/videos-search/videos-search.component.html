@@ -1,1 +1,114 @@
-<p>videos-search works!</p>
+<div class="videos-page">
+
+  <header class="page-header">
+    <div>
+      <h1>Videos</h1>
+      <p>Busca tus videos favoritos de YouTube</p>
+    </div>
+  </header>
+
+  <form
+    class="search-container"
+    (ngSubmit)="searchVideos()">
+
+    <mat-form-field
+      appearance="outline"
+      class="search-field">
+
+      <mat-label>Buscar videos</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        name="searchTerm">
+
+      @if (searchTerm) {
+        <button
+          matSuffix
+          mat-icon-button
+          type="button"
+          aria-label="Limpiar búsqueda"
+          (click)="searchTerm = ''">
+
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="loading || !searchTerm.trim()">
+
+      <mat-icon>search</mat-icon>
+      Buscar
+    </button>
+
+  </form>
+
+
+  @if (loading) {
+    <div class="loading-container">
+      <mat-spinner diameter="42"></mat-spinner>
+      <p>Buscando videos...</p>
+    </div>
+  }
+
+
+  @if (!loading && errorMessage) {
+    <div class="state-container">
+      <mat-icon class="state-icon">error_outline</mat-icon>
+      <h2>Error al cargar los videos</h2>
+      <p>{{ errorMessage }}</p>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="searchVideos()">
+
+        <mat-icon>refresh</mat-icon>
+        Intentar nuevamente
+      </button>
+    </div>
+  }
+
+
+  @if (!loading && !errorMessage && videos.length > 0) {
+    <section class="results-section">
+      <div class="results-header">
+        <h2>Resultados</h2>
+        <span>{{ videos.length }} videos</span>
+      </div>
+
+      <div class="video-grid">
+        @for (video of videos; track video.youtube_video_id) {
+          <app-video-card
+            [video]="video"
+            [isFavorite]="isFavorite(video.youtube_video_id)"
+            (toggleFavorite)="toggleFavorite($event)">
+          </app-video-card>
+        }
+      </div>
+    </section>
+  }
+
+  @if (!loading && !errorMessage && searchPerformed && videos.length === 0) {
+    <div class="state-container">
+      <mat-icon class="state-icon">search_off</mat-icon>
+      <h2>No se encontraron videos</h2>
+      <p>Prueba otra búsqueda.</p>
+    </div>
+  }
+
+
+  @if (!loading && !searchPerformed) {
+    <div class="state-container">
+      <mat-icon class="state-icon">ondemand_video</mat-icon>
+      <h2>Realiza una busqueda</h2>
+      <p>Escribe una palabra o frase para comenzar.</p>
+    </div>
+  }
+
+</div>

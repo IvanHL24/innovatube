@@ -35,6 +35,6 @@ export class SessionService {
   }
 
   public userInfo(): Observable<any> {
-    return this._http.post<any>(this.url+'auth/login', {headers: this.httpHeader.append('Authorization', 'Bearer'+localStorage.getItem('token'))})
+    return this._http.post<any>(this.url+'auth/me', {headers: this.httpHeader.append('Authorization', 'Bearer '+localStorage.getItem('token'))})
   }
 }
