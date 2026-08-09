@@ -47,7 +47,7 @@ export const login = async (credentials: LoginRequest) => {
 }
 
 export const getMe = async (userId: number) => {
-    const sql = `SELECT id, first_name, last_name, username, email, created_at FROM users WHERE id = ?`;
+    const sql = `SELECT first_name, username FROM users WHERE id = ?`;
     
     const[info] = await db.execute(sql, [userId]);
     
