@@ -21,7 +21,8 @@ export class ResetPasswordComponent {
 
   private fb = inject(FormBuilder);
 
-  hidePassword = true;
+  hidePassword1 = true;
+  hidePassword2 = true;
   loading = false;
 
   reset = false;
