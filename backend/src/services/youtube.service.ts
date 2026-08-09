@@ -9,7 +9,7 @@ export const searchVideos = async (query?: string) => {
             part: "snippet",
             q: query,
             type: "video",
-            maxResults: 12,
+            maxResults: 24,
             relevanceLanguage: "es",
             key: process.env.YOUTUBE_API_KEY
         }
