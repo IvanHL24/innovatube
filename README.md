@@ -54,7 +54,7 @@ Para ejecutar el proyecto localmente se requiere:
 
 1. **Clonar el repositorio**
 
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/IvanHL24/innovatube.git
 cd innovatube
 
 2. **Base de datos**
